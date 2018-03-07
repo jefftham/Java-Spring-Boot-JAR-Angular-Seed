@@ -2,20 +2,39 @@ package com.yeadev.JavaSpringBootJARAngularSeed;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.TimerTask;
 import javax.servlet.http.HttpServletRequest;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.boot.autoconfigure.web.ErrorViewResolver;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ModelAndView;
+import com.yeadev.JavaSpringBootJARAngularSeed.scheduler.FixedRateScheduler;
 
+@Slf4j
 @SpringBootApplication
 public class JavaSpringBootJarAngularSeedApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JavaSpringBootJarAngularSeedApplication.class, args);
+        ApplicationContext ctx= SpringApplication.run(JavaSpringBootJarAngularSeedApplication.class, args);
+        FixedRateScheduler fixedRateScheduler = (FixedRateScheduler) ctx.getBean("fixedRateScheduler");
+
+        // scheduler a fixed rate task that run every 5 seconds
+        fixedRateScheduler.start(new TimerTask() {
+            int count = 0;
+            final long start = System.currentTimeMillis();
+
+            @Override
+            public void run() {
+                log.info("Task invoked - " + (++count) + " - " +   (System.currentTimeMillis() - start) + " ms" + " - " + Thread.currentThread());
+            }
+        },1000,5000);
+
     }
 
     // map all unknown path to angular frontend, let angular to handle it.
