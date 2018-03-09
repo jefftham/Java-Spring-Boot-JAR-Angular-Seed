@@ -20,7 +20,7 @@ public class MainController {
     // ref : https://www.java2blog.com/spring-restful-web-services-json-example/
     // if headers = "Accept=application/json", jackson will map it
     @RequestMapping(value = "/returnJson", method = RequestMethod.GET, headers = "Accept=application/json")
-    public List returnJson1() {
+    public List<String> returnJson1() {
         List<String> listOfCountries = new ArrayList<>();
         listOfCountries = Arrays.asList("US", "UK");
         return listOfCountries;

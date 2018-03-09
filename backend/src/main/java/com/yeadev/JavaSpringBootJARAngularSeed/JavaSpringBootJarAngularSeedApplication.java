@@ -1,10 +1,7 @@
 package com.yeadev.JavaSpringBootJARAngularSeed;
 
 import java.util.Collections;
-import java.util.Map;
 import java.util.TimerTask;
-import javax.servlet.http.HttpServletRequest;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +21,7 @@ public class JavaSpringBootJarAngularSeedApplication {
         ApplicationContext ctx= SpringApplication.run(JavaSpringBootJarAngularSeedApplication.class, args);
         FixedRateScheduler fixedRateScheduler = (FixedRateScheduler) ctx.getBean("fixedRateScheduler");
 
-        // scheduler a fixed rate task that run every 5 seconds
+        // scheduler a fixed rate task that run every 60 seconds
         fixedRateScheduler.start(new TimerTask() {
             int count = 0;
             final long start = System.currentTimeMillis();
@@ -33,7 +30,7 @@ public class JavaSpringBootJarAngularSeedApplication {
             public void run() {
                 log.info("Task invoked - " + (++count) + " - " +   (System.currentTimeMillis() - start) + " ms" + " - " + Thread.currentThread());
             }
-        },1000,5000);
+        },1000,60000);
 
     }
 
