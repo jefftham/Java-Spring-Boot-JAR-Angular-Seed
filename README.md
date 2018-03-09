@@ -1,5 +1,5 @@
-[# Java-Spring-Boot-JAR-Angular-Seed](https://github.com/jefftham/Java-Spring-Boot-JAR-Angular-Seed)
-A Seed / boiler-plate project that create Back-end server with Spring Boot Framework, Tomcat and Angular as Front-end. It included a series of helpful example, eg. scheduler, jdbctemplate, rest api ...
+# Java-Spring-Boot-JAR-Angular-Seed
+[Java-Spring-Boot-JAR-Angular-Seed](https://github.com/jefftham/Java-Spring-Boot-JAR-Angular-Seed) is A Seed / boiler-plate project that create Back-end server with Spring Boot Framework, Tomcat and Angular as Front-end. It included a series of helpful example, eg. scheduler, jdbctemplate, rest api ...
 
 
 # Links
@@ -15,8 +15,7 @@ A Seed / boiler-plate project that create Back-end server with Spring Boot Frame
 [helpful ref](http://www.springboottutorial.com/spring-boot-and-h2-in-memory-database)
 [jdbctemplate ref](https://github.com/in28minutes/spring-boot-examples/tree/master/spring-boot-2-jdbc-with-h2)
 
-# Use with Eclipse
 
-## setup in Eclipse
+# Setup in Eclipse
 [lombok setup](https://howtodoinjava.com/automation/lombok-eclipse-installation-examples/)
 [install STS](https://o7planning.org/en/10249/install-spring-tool-suite-into-eclipse)
