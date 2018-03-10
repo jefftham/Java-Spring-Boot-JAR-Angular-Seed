@@ -1,17 +1,15 @@
 package com.yeadev.JavaSpringBootJARAngularSeed;
 
-import java.util.Collections;
-import java.util.TimerTask;
+import com.yeadev.JavaSpringBootJARAngularSeed.util.osCommand.OsCommand;
+import com.yeadev.JavaSpringBootJARAngularSeed.util.scheduler.FixedRateScheduler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.boot.autoconfigure.web.ErrorViewResolver;
-import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.ModelAndView;
-import com.yeadev.JavaSpringBootJARAngularSeed.scheduler.FixedRateScheduler;
+
+import java.util.TimerTask;
+
+//import org.springframework.boot.autoconfigure.web.ErrorViewResolver;
 
 @Slf4j
 @SpringBootApplication
@@ -19,9 +17,9 @@ public class JavaSpringBootJarAngularSeedApplication {
 
     public static void main(String[] args) {
         ApplicationContext ctx= SpringApplication.run(JavaSpringBootJarAngularSeedApplication.class, args);
-        FixedRateScheduler fixedRateScheduler = (FixedRateScheduler) ctx.getBean("fixedRateScheduler");
 
         // scheduler a fixed rate task that run every 60 seconds
+        FixedRateScheduler fixedRateScheduler = (FixedRateScheduler) ctx.getBean("fixedRateScheduler");
         fixedRateScheduler.start(new TimerTask() {
             int count = 0;
             final long start = System.currentTimeMillis();
@@ -32,15 +30,14 @@ public class JavaSpringBootJarAngularSeedApplication {
             }
         },1000,60000);
 
+
+        // run os command
+        OsCommand osCommand = (OsCommand) ctx.getBean("osCommand");
+        final String run = OsCommand.run("ping google.com");
+
+
     }
 
-    // map all unknown path to angular frontend, let angular to handle it.
-    @Bean
-    public ErrorViewResolver supportPathBasedLocationStrategyWithoutHashes() {
-        return (request, status, model) -> status == HttpStatus.NOT_FOUND
-                ? new ModelAndView("index.html", Collections.emptyMap(), HttpStatus.OK)
-                : null;
-    }
 
     // the following code is not needed, it just output the name of the bean which bundle in Spring Boot
     /*

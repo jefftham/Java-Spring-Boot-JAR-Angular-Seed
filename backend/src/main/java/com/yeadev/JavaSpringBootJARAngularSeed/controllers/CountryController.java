@@ -2,27 +2,31 @@ package com.yeadev.JavaSpringBootJARAngularSeed.controllers;
 
 import com.yeadev.JavaSpringBootJARAngularSeed.databaseService.CountryService;
 import com.yeadev.JavaSpringBootJARAngularSeed.models.Country;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 // ref : https://www.java2blog.com/spring-restful-web-services-json-example/
 @RestController
 @RequestMapping("/test")
 public class CountryController {
-	
-	@Autowired
+
 	CountryService countryService;
+
+    @Autowired
+    public CountryController(CountryService countryService) {
+        this.countryService = countryService;
+    }
 
     @RequestMapping(value = "/countries", method = RequestMethod.GET, headers = "Accept=application/json")
     public List<Country> getCountries() {
-        List<Country> listOfCountries = new ArrayList<>();
+        List<Country> listOfCountries;
        // listOfCountries = createCountryList();
         listOfCountries = countryService.findAll();
         return listOfCountries;

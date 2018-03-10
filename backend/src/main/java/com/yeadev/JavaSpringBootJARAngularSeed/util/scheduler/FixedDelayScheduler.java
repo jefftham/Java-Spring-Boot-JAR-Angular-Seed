@@ -1,7 +1,8 @@
-package com.yeadev.JavaSpringBootJARAngularSeed.scheduler;
+package com.yeadev.JavaSpringBootJARAngularSeed.util.scheduler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
 import java.util.Timer;
 import java.util.TimerTask;
 

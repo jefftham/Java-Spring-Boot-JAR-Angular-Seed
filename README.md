@@ -1,5 +1,5 @@
 # Java-Spring-Boot-JAR-Angular-Seed
-[Java-Spring-Boot-JAR-Angular-Seed](https://github.com/jefftham/Java-Spring-Boot-JAR-Angular-Seed) is A Seed / boiler-plate project that create Back-end server with Spring Boot Framework, Tomcat and Angular as Front-end. It included a series of helpful example, eg. scheduler, jdbctemplate, rest api ...
+[Java-Spring-Boot-JAR-Angular-Seed](https://github.com/jefftham/Java-Spring-Boot-JAR-Angular-Seed) is A Seed / boiler-plate project that create Back-end server with Spring Boot Framework, Tomcat and Angular as Front-end. It included a series of helpful example, eg. scheduler, osCommand, jdbctemplate, rest api ...
 
 
 # Links
