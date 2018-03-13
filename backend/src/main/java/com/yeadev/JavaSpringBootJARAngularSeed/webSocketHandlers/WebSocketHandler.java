@@ -18,7 +18,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class WebSocketHandler extends TextWebSocketHandler {
 
     // keep all active sessions
-    List sessions = new CopyOnWriteArrayList<>();
+    private List<Object> sessions = new CopyOnWriteArrayList<>();
 
     // inner class to map json object
     @Data
@@ -30,29 +30,45 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException{
         // wrap the received json object into map
-        log.info("receive: "+message);
+        // log.info("receive: "+message);
         Map data = new Gson().fromJson(message.getPayload(),Map.class);
 
         // see what type of message
-        final String type = (String) data.get("type");
+        final String type = getValueFromMessage(message,"type");
 
         switch (type){
             case "name":
                 // payload from frontend
-                String username = (String) data.get("payload");
+                String username = getValueFromMessage(message,"payload");
 
                 log.info("receive name: "+ username);
 
-                // build return message
-                Message ret = new Message();
-                ret.setType("name");
-                ret.setPayload("Hi, "+username);
-
                 // build message to json
-                String retJson = new Gson().toJson(ret);
+                TextMessage retJson = setJson("name", "Hi, "+username);
 
-                session.sendMessage(new TextMessage(retJson));
+                session.sendMessage(retJson);
         }
+    }
+
+    // get value from received message from frontend
+    private String getValueFromMessage(TextMessage message, String key){
+        Map data = new Gson().fromJson(message.getPayload(),Map.class);
+        return (String) data.get(key);
+    }
+
+    // build return json to frontend
+    private TextMessage setJson (String type, String payload){
+        Message ret = new Message();
+        ret.setType(type);
+        ret.setPayload(payload);
+
+        // build message to json
+        return new TextMessage(new Gson().toJson(ret));
+    }
+
+    // wrap any object to json
+    public String toJson(Object obj){
+        return new Gson().toJson(obj);
     }
 
     @Override
