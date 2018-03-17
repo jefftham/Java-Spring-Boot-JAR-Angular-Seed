@@ -19,26 +19,41 @@ public class JavaSpringBootJarAngularSeedApplication extends SpringBootServletIn
     private static Class applicationClass = JavaSpringBootJarAngularSeedApplication.class;
 
     public static void main(String[] args) {
-        ApplicationContext ctx= SpringApplication.run(JavaSpringBootJarAngularSeedApplication.class, args);
+        ApplicationContext ctx = SpringApplication.run(JavaSpringBootJarAngularSeedApplication.class, args);
 
-        // scheduler a fixed rate task that run every 60 seconds
+        // scheduler a fixed rate task that run every 600 seconds
         FixedRateScheduler fixedRateScheduler = (FixedRateScheduler) ctx.getBean("fixedRateScheduler");
         fixedRateScheduler.start(new TimerTask() {
-            int count = 0;
             final long start = System.currentTimeMillis();
+            int count = 0;
 
             @Override
             public void run() {
-                log.info("Task invoked - " + (++count) + " - " +   (System.currentTimeMillis() - start) + " ms" + " - " + Thread.currentThread());
+                log.info("Task invoked - " + (++count) + " - " + (System.currentTimeMillis() - start) + " ms" + " - " + Thread.currentThread());
             }
-        },1000,60000);
+        }, 1000, 600_000);
 
 
         // run os command
+
         OsCommand osCommand = (OsCommand) ctx.getBean("osCommand");
         final String run = OsCommand.run("ping google.com");
 
-
+        // send email
+        /*
+            try {
+                ((EmailService) ctx.getBean("emailService")).sendEmail(
+                        new Email(
+                                "jeff.tham@email.com,jeff.tham@live.com",
+                                "jeff.tham@mail.com",
+                                "testing 1",
+                                "<p>testing 1</p>",
+                                true)
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        */
     }
 
 
