@@ -42,12 +42,6 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
-		<!-- Spring Boot: autoconfigure -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-		</dependency>
-
 		<!-- Spring Boot: websocket -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
