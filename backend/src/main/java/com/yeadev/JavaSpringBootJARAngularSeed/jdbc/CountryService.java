@@ -1,6 +1,6 @@
-package com.yeadev.JavaSpringBootJARAngularSeed.databaseService;
+package com.yeadev.JavaSpringBootJARAngularSeed.jdbc;
 
-import com.yeadev.JavaSpringBootJARAngularSeed.models.Country;
+import com.yeadev.JavaSpringBootJARAngularSeed.jdbc.models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+// it can be annotate as @Repository or @Service
+// normally, programmers named it CountryDao
+// i prefer to use @Repository for JPA
 
 @Service
 public class CountryService {

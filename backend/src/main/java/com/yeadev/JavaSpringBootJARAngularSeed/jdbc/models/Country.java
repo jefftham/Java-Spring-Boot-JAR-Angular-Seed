@@ -1,6 +1,8 @@
-package com.yeadev.JavaSpringBootJARAngularSeed.models;
+package com.yeadev.JavaSpringBootJARAngularSeed.jdbc.models;
 
 import lombok.Data;
+
+// acts like entity, but jdbc is using it, so named the package as models to prevent confusion
 
 @Data
 public class Country {

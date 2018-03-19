@@ -1,7 +1,7 @@
 package com.yeadev.JavaSpringBootJARAngularSeed.controllers;
 
-import com.yeadev.JavaSpringBootJARAngularSeed.databaseService.CountryService;
-import com.yeadev.JavaSpringBootJARAngularSeed.models.Country;
+import com.yeadev.JavaSpringBootJARAngularSeed.jdbc.CountryService;
+import com.yeadev.JavaSpringBootJARAngularSeed.jdbc.models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import java.util.List;
 
 // ref : https://www.java2blog.com/spring-restful-web-services-json-example/
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/jdbc")
 public class CountryController {
 
 	CountryService countryService;

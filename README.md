@@ -9,9 +9,9 @@
 
 [rest api - return json](http://localhost:8080/returnJson)
 
-[all countries](http://localhost:8080/test/countries)
+[all countries](http://localhost:8080/jdbc/countries)
 
-[find contry by id](http://localhost:8080/test/country/10001)
+[find contry by id](http://localhost:8080/jdbc/country/10001)
 
 
 ## H2 database link
