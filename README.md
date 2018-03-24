@@ -15,13 +15,16 @@
 
 
 ## H2 database link
-[local](http://localhost:8080/h2)
+[h2 console](http://localhost:8080/h2)
 
 [simple ref](https://dzone.com/articles/integrate-h2-database-in-your-spring-boot-applicat)
 
 [helpful ref](http://www.springboottutorial.com/spring-boot-and-h2-in-memory-database)
 
+## JdbcTemplate, JPA, Hibernate link
 [jdbctemplate ref](https://github.com/in28minutes/spring-boot-examples/tree/master/spring-boot-2-jdbc-with-h2)
+
+[jpa-hibernate ref](https://github.com/in28minutes/jpa-with-hibernate/tree/master/02-jpa-advanced)
 
 
 # Setup in Eclipse

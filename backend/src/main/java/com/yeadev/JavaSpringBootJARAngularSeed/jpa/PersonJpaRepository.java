@@ -9,6 +9,10 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/*  the simplest way to create repository and its methods is to implement/extend  JpaRepository<Person, Long>
+*   public interface PersonJpaRepository extends JpaRepository<Person, Long> {}
+*/
+
 @Repository
 @Transactional
 public class PersonJpaRepository {
