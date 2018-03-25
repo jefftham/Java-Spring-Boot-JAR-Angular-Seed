@@ -2,6 +2,7 @@ package com.yeadev.JavaSpringBootJARAngularSeed.jdbc;
 
 import com.yeadev.JavaSpringBootJARAngularSeed.jdbc.models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -43,8 +44,12 @@ public class CountryService {
 	}
 
 	public Country findById(long id) {
-		return jdbcTemplate.queryForObject("select * from country where id=?", new Object[] { id },
-				new BeanPropertyRowMapper<>(Country.class));
+		try {
+			return jdbcTemplate.queryForObject("select * from country where id=?", new Object[] { id },
+                    new BeanPropertyRowMapper<>(Country.class));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	public int deleteById(long id) {
