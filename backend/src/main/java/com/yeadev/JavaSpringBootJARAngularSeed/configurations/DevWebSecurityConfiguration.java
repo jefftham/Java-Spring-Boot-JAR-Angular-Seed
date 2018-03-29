@@ -10,13 +10,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 
 /*
-* This configuration only apply for prod.
+* This configuration only apply for dev because it disable csrf and headers checks for h2 database.
 * */
 
 @Configuration
 @EnableWebSecurity
-@Profile("prod")
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+@Profile("dev")
+public class DevWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,6 +34,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
 
+        // in dev, spring security will block access to h2 console.
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
         /* // other example
          http.authorizeRequests()
