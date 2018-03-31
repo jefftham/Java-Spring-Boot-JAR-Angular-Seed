@@ -1,29 +1,42 @@
 package com.yeadev.JavaSpringBootJARAngularSeed.configurations;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
+
+import javax.sql.DataSource;
+
+
 
 /*
-* This configuration only apply for prod.
-* */
+ * This configuration only apply for prod.
+ * */
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
-@Profile("prod")
+@Profile({"preprod","prod"})
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    private DataSource dataSource;
+
+   @Autowired
+   public WebSecurityConfiguration(JdbcTemplate jdbcTemplate) {
+        this.dataSource = jdbcTemplate.getDataSource();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // visitors can access all except ...
         http
-            .authorizeRequests()
-                .antMatchers("/jdbc/**","/returnJson").authenticated()
+                .authorizeRequests()
+                .antMatchers("/jdbc/**", "/returnJson").authenticated()
                 .antMatchers("/h2/**").permitAll()
                 .anyRequest().permitAll()
             .and()
@@ -32,54 +45,41 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
             .and()
                 .logout()
-                .permitAll();
+                .permitAll()
+            .and()
+                // .exceptionHandling().accessDeniedPage("/access-denied");
+
+        ;
 
 
         /* // other example
          http.authorizeRequests()
-			.antMatchers("/").hasRole("EMPLOYEE")
-			.antMatchers("/leaders/**").hasRole("MANAGER")
-			.antMatchers("/systems/**").hasRole("ADMIN")
+			    .antMatchers("/").hasRole("EMPLOYEE")
+			    .antMatchers("/leaders/**").hasRole("MANAGER")
+			    .antMatchers("/systems/**").hasRole("ADMIN")
 			.and()
 			.formLogin()
 				.loginPage("/showMyLoginPage")
 				.loginProcessingUrl("/authenticateTheUser")
 				.permitAll()
 			.and()
-			.logout().permitAll()
+			    .logout().permitAll()
 			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied");
+			    .exceptionHandling().accessDeniedPage("/access-denied");
 		*/
     }
 
-    /*
-        @Bean
-        @Override
-        public UserDetailsService userDetailsService() {
-            UserDetails user =
-                    withDefaultPasswordEncoder()
-                            .username("user")
-                            .password("password")
-                            .roles("USER")
-                            .build();
-
-            return new InMemoryUserDetailsManager(user);
-        }
-    */
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        // add our users for in memory authentication
-        UserBuilder users = User.withDefaultPasswordEncoder();
-
-        auth.inMemoryAuthentication()
-                .withUser(users.username("a").password("test123").roles("EMPLOYEE"))
-                .withUser(users.username("b").password("test123").roles("EMPLOYEE", "MANAGER"))
-                .withUser(users.username("c").password("test123").roles("EMPLOYEE", "ADMIN"));
-
         // use database
-        // auth.jdbcAuthentication().dataSource(securityDataSource);
+        auth.jdbcAuthentication().dataSource(dataSource)
+               .usersByUsernameQuery("select username, password, enabled from users where username=?")
+               .authoritiesByUsernameQuery("select username, role  from user_roles  where username=?")
+               //.passwordEncoder(new BCryptPasswordEncoder())
+                ;
     }
+
 
 }

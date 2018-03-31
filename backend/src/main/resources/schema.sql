@@ -1,34 +1,36 @@
-create table country
+CREATE TABLE country
 (
-   id integer not null,
-   countryName varchar(255) not null,
-   primary key(id)
+  id          INTEGER      NOT NULL,
+  countryName VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
 );
 
 -- create users table for Spring Security
-create table users
+CREATE TABLE users
 (
-  username VARCHAR2(50) NOT NULL,
-  password VARCHAR2(68) NOT NULL,
-  enabled TINYINT(1) DEFAULT 1,
-  CONSTRAINT  user_pk primary key(username)
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(68) NOT NULL,
+  enabled  TINYINT(1)  NOT NULL DEFAULT 1,
+  PRIMARY KEY (username)
 );
 
-create table authorities
+CREATE TABLE user_roles
 (
-  username VARCHAR2(50) NOT NULL,
-  authority VARCHAR2(100) NOT NULL DEFAULT 'user',
-  CONSTRAINT  aut_pk primary key(username),
-  CONSTRAINT  user_fk FOREIGN KEY (username) REFERENCES  users(username)
+  user_role_id INT(11)      NOT NULL AUTO_INCREMENT,
+  username     VARCHAR(50)  NOT NULL,
+  role         VARCHAR(100) NOT NULL DEFAULT 'user',
+  PRIMARY KEY (user_role_id),
+  UNIQUE KEY uni_username_role ( ROLE, username),
+  KEY fk_username_idx (username),
+  CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)
 );
-
 
 -- can be created by hibernate
-create table person
+CREATE TABLE person
 (
-   id BIGINT not null,
-   name varchar(255) not null,
-   location varchar(255),
-   birth_date timestamp,
-   primary key(id)
+  id         BIGINT       NOT NULL,
+  name       VARCHAR(255) NOT NULL,
+  location   VARCHAR(255),
+  birth_date TIMESTAMP,
+  PRIMARY KEY (id)
 );

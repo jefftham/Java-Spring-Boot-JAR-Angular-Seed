@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 
 /*
-* This configuration only apply for dev because it disable csrf and headers checks for h2 database.
-* */
+ * This configuration only apply for dev because it disable csrf and headers checks for h2 database.
+ * */
 
 @Configuration
 @EnableWebSecurity
@@ -22,8 +22,8 @@ public class DevWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // visitors can access all except ...
         http
-            .authorizeRequests()
-                .antMatchers("/jdbc/**","/returnJson").authenticated()
+                .authorizeRequests()
+                .antMatchers("/jdbc/**", "/returnJson").authenticated()
                 .antMatchers("/h2/**").permitAll()
                 .anyRequest().permitAll()
             .and()
@@ -38,37 +38,8 @@ public class DevWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.headers().frameOptions().disable();
 
-        /* // other example
-         http.authorizeRequests()
-			.antMatchers("/").hasRole("EMPLOYEE")
-			.antMatchers("/leaders/**").hasRole("MANAGER")
-			.antMatchers("/systems/**").hasRole("ADMIN")
-			.and()
-			.formLogin()
-				.loginPage("/showMyLoginPage")
-				.loginProcessingUrl("/authenticateTheUser")
-				.permitAll()
-			.and()
-			.logout().permitAll()
-			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied");
-		*/
     }
 
-    /*
-        @Bean
-        @Override
-        public UserDetailsService userDetailsService() {
-            UserDetails user =
-                    withDefaultPasswordEncoder()
-                            .username("user")
-                            .password("password")
-                            .roles("USER")
-                            .build();
-
-            return new InMemoryUserDetailsManager(user);
-        }
-    */
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -77,12 +48,11 @@ public class DevWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         UserBuilder users = User.withDefaultPasswordEncoder();
 
         auth.inMemoryAuthentication()
-                .withUser(users.username("a").password("test123").roles("EMPLOYEE"))
-                .withUser(users.username("b").password("test123").roles("EMPLOYEE", "MANAGER"))
-                .withUser(users.username("c").password("test123").roles("EMPLOYEE", "ADMIN"));
+                .withUser(users.username("employee").password("test123").roles("USER"))
+                .withUser(users.username("manager").password("test123").roles("USER", "MANAGER"))
+                .withUser(users.username("admin").password("test123").roles("USER", "ADMIN"));
 
-        // use database
-        // auth.jdbcAuthentication().dataSource(securityDataSource);
+
     }
 
 }
