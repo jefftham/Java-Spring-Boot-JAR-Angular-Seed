@@ -20,9 +20,9 @@ CREATE TABLE user_roles
   username     VARCHAR(50)  NOT NULL,
   role         VARCHAR(100) NOT NULL DEFAULT 'user',
   PRIMARY KEY (user_role_id),
-  UNIQUE KEY uni_username_role ( ROLE, username),
-  KEY fk_username_idx (username),
-  CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)
+  --UNIQUE KEY uni_username_role ( ROLE, username),
+  --KEY fk_username_idx (username),
+  --CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)
 );
 
 -- can be created by hibernate
