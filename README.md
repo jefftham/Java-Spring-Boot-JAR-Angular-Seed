@@ -1,5 +1,5 @@
 # Java-Spring-Boot-JAR-Angular-Seed
-[Java-Spring-Boot-JAR-Angular-Seed](https://github.com/jefftham/Java-Spring-Boot-JAR-Angular-Seed) is A Seed / boiler-plate project that create Back-end server with Spring Boot Framework, Tomcat and Angular as Front-end. It included a series of helpful example, eg. scheduler, osCommand, jdbctemplate, hibernate, websocket, send SMTP email, rest api, Spring Security ...
+[Java-Spring-Boot-JAR-Angular-Seed](https://github.com/jefftham/Java-Spring-Boot-JAR-Angular-Seed) is A Seed / boiler-plate project that create Back-end server with Spring Boot Framework, Tomcat and Angular as Front-end. It included a series of helpful example, eg. scheduler, osCommand, jdbctemplate, hibernate, mybatis, websocket, SMTP email, rest api, Spring Security ...
 
 
 # Links
@@ -7,11 +7,11 @@
 
 [rest api - return string](http://localhost:8080/returnString)
 
-[rest api - return json](http://localhost:8080/returnJson)
+[rest api - return json - Spring Security protected](http://localhost:8080/returnJson)
 
-[all countries](http://localhost:8080/jdbc/countries)
+[jdbc - all countries - Spring Security protected](http://localhost:8080/jdbc/countries)
 
-[find contry by id](http://localhost:8080/jdbc/country/10001)
+[mybatis - find country by id](http://localhost:8080/mybatis/country/10001)
 
 
 ## H2 database link
@@ -21,10 +21,12 @@
 
 [helpful ref](http://www.springboottutorial.com/spring-boot-and-h2-in-memory-database)
 
-## JdbcTemplate, JPA, Hibernate link
+## JdbcTemplate, JPA, Hibernate, MyBatis link
 [jdbctemplate ref](https://github.com/in28minutes/spring-boot-examples/tree/master/spring-boot-2-jdbc-with-h2)
 
 [jpa-hibernate ref](https://github.com/in28minutes/jpa-with-hibernate/tree/master/02-jpa-advanced)
+
+[mybatis ref](https://github.com/in28minutes/spring-boot-examples/tree/master/spring-boot-2-myBatis-with-h2)
 
 
 # Setup in Eclipse

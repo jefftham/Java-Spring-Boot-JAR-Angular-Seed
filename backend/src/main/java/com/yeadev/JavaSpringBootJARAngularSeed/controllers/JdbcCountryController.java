@@ -15,12 +15,12 @@ import java.util.List;
 // ref : https://www.java2blog.com/spring-restful-web-services-json-example/
 @RestController
 @RequestMapping("/jdbc")
-public class CountryController {
+public class JdbcCountryController {
 
 	CountryService countryService;
 
     @Autowired
-    public CountryController(CountryService countryService) {
+    public JdbcCountryController(CountryService countryService) {
         this.countryService = countryService;
     }
 

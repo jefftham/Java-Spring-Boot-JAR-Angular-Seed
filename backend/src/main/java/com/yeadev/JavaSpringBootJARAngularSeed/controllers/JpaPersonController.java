@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/jpa")
-public class PersonController {
+public class JpaPersonController {
 
     PersonJpaRepository repository;
 
     @Autowired
-    public PersonController(PersonJpaRepository repository) {
+    public JpaPersonController(PersonJpaRepository repository) {
         this.repository = repository;
     }
 
