@@ -23,7 +23,8 @@ public class DevWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         // visitors can access all except ...
         http
                 .authorizeRequests()
-                .antMatchers("/jdbc/**", "/returnJson").authenticated()
+                // .antMatchers("/jdbc/**", "/returnJson").authenticated()
+                .antMatchers("/protected/**").authenticated()
                 .antMatchers("/h2/**").permitAll()
                 .anyRequest().permitAll()
             .and()

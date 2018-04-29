@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -29,19 +30,19 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
-		<!-- Spring Boot: jdbc  -->
+		<!-- Spring Boot: jdbc -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 
-		<!-- Spring Boot: data-jpa  -->
+		<!-- Spring Boot: data-jpa -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- MyBatis - alternative to jdbc and hibernate  -->
+		<!-- MyBatis - alternative to jdbc and hibernate -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
@@ -54,11 +55,42 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- Spring Boot: session -->
+		<!-- <dependency> <groupId>org.springframework.session</groupId> <artifactId>spring-session-core</artifactId> 
+			</dependency> -->
+
+		<!-- To compile JSP files -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<!-- Spring Boot: Thymeleaf -->
+		<!--<dependency> -->
+		<!--<groupId>org.springframework.boot</groupId> -->
+		<!--<artifactId>spring-boot-starter-thymeleaf</artifactId> -->
+		<!--</dependency> -->
+
 		<!-- Spring Boot: security -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+		<!-- commons-lang3 - utility classes added in java.lang -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.7</version>
+		</dependency>
+
 
 		<!-- Spring Boot: mail -->
 		<dependency>
@@ -79,7 +111,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- google gson-->
+		<!-- google gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
